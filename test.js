@@ -1,4 +1,6 @@
 const myLibrary = [];
+const newBook = document.querySelector(#newBook);
+
 
 function Book(title, author, pages, readStatus){
     this.title = title;
@@ -19,9 +21,11 @@ function bookCards(Library){
     for(const book of Library){
        bookList.push(`${book.title},by ${book.author}, ${book.pages}, ${book.readStatus}, ${book.id}`);
     }
+    return bookList;
 }
 
+addBookToLibrary("Percy jackson", "rick",366,read);
 
-console.log(bookCards(myLibrary));
+const bookList = bookCards(myLibrary);
 
-const newBook = document.createElement('button');
+
