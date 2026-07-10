@@ -69,7 +69,62 @@ body {font-family: Arial, Helvetica, sans-serif;}
   opacity: 1;
 }
 
-#bookDisplay{
-    display:flex;
-    flex-direction: row;
+#bookDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.book-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  border-left: 5px solid #ccc;
+  border-radius: 6px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.book-card.read {
+  border-left-color: #04AA6D;
+}
+
+.book-card.unread {
+  border-left-color: #e74c3c;
+}
+
+.book-card p {
+  margin: 0;
+  flex: 1;
+}
+
+.besideBook {
+  border: none;
+  padding: 8px 12px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  opacity: 0.85;
+}
+
+.besideBook:hover {
+  opacity: 1;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.toggle-btn {
+  background-color: #3498db;
+}
+/* target by button text isn't possible in CSS, so give delete/toggle their own classes in JS instead of relying only on besideBook */
+
+.form-container input[type=checkbox] {
+  margin: 10px 6px 10px 0;
 }

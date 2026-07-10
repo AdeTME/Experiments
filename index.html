@@ -19,7 +19,7 @@
     <button id="newBtn" onclick="openForm()">New Book</button>
 
     <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
+        <form action="/action_page.php" class="form-container" id="bookForm">
             <h1>Book Info</h1>
 
             <label for="title"><b>Title</b></label>
@@ -31,9 +31,9 @@
             <label for="pages"><b>Pages</b></label>
             <input type="number" placeholder="Pages" name="pages" required>
 
-            <label for="readStatus"><b>Read Status</b></label>
-            <input type="text" placeholder="read/not read" name="readStatus" required>
-
+            <input type="checkbox" id="readStatus" name="readStatus" value="True">
+            <label for="readStatus"><b>Read </b></label>
+            
             <button type="submit" class="btn">Archive</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
