@@ -29,7 +29,7 @@ function bookDisplay(library) {
   }
 }
 
-
+addBookToLibrary("book1","author1",900,"read");
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
