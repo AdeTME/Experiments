@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <script src="test.js"></script>
+    <script src="test.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
 
 
-    
+    <div id="bookDisplay">
+        
+    </div>
+
+    <button id="newBtn" onclick="openForm()">New Book</button>
+
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Book Info</h1>
+
+            <label for="title"><b>Title</b></label>
+            <input type="text" placeholder=" Book Name" name="title" required>
+
+            <label for="author"><b>Author</b></label>
+            <input type="text" placeholder="Author" name="author" required>
+
+            <label for="pages"><b>Pages</b></label>
+            <input type="number" placeholder="Pages" name="pages" required>
+
+            <label for="readStatus"><b>Read Status</b></label>
+            <input type="text" placeholder="read/not read" name="readStatus" required>
+
+            <button type="submit" class="btn">Archive</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
 </body>
+
 </html>

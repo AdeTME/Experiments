@@ -1,6 +1,8 @@
 const myLibrary = [];
+const bookDisplayArea = document.getElementById("bookDisplay");
 
-function Book(title,author,pages,readStatus) {
+
+function Book(title, author, pages, readStatus) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -13,9 +15,27 @@ function addBookToLibrary(title, author, pages, readStatus) {
   myLibrary.push(newBook);
 }
 
-addBookToLibrary("Calculus","James Stewart", 956, "yes");
 
+function bookDisplay(library) {
+  for (const book of library) {
+    const p = document.createElement("p");
+    const deleteBtn= document.createElement("button");
+    const read = document.createElement("button");
+    p.append(`Book: ${book.title}, by ${book.author}, has ${book.pages} pages. Have I read it? ${book.readStatus}`);
+    p.append(deleteBtn);
+    p.append(read);
 
-for(const book of myLibrary){
-  console.log(book.title);
+    bookDisplayArea.append(p);
+  }
 }
+
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+bookDisplay(myLibrary);
+
+
