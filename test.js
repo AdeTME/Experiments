@@ -43,7 +43,7 @@ function bookDisplay(library) {
 
     deleteBtn.textContent = "Delete";
 
-    p.append(`Book: ${book.title}, by ${book.author}, has ${book.pages} pages. Have I read it? ${book.readStatus}`);
+    p.append(`Book: ${book.title}, by ${book.author}, has ${book.pages} pages. Been read? ${book.readStatus}`);
 
     bookDiv.append(p, deleteBtn, toggleRead);
 
@@ -97,20 +97,20 @@ function toggleRead() {
   toggleBtn.forEach(btn => {
     btn.addEventListener("click", () => {
       const toggledObjectId = btn.parentElement.id;
-      myLibrary = myLibrary.map(book => {
-        if ((toggledObjectId === book.id) && (btn.value === true)) {
-          btn.value = false;
-          btn.textContent = "Not Read";
-          book.readStatus = false;
-        } else if((toggledObjectId === book.id) && (btn.value === false)) {
-          btn.value = true;
-          btn.textContent = "Read";
-          book.readStatus=true;
-        }
-        return book;
 
+      const book = myLibrary.find(b => b.id === toggledObjectId);
+      if (book) {
+        book.readStatus = !book.readStatus;
+
+        if(book.readStatus){
+          btn.textContent="Read";
+        }
+        else{btn.textContent="Not Read"};
+
+        const paragraph = btn.parentElement.querySelector("p");
+        paragraph.textContent = `Book: ${book.title}, by ${book.author}, has ${book.pages} pages. Been read ? ${book.readStatus}`;
+      }
       });
-    });
   });
 }
 
