@@ -22,19 +22,19 @@
         <form action="/action_page.php" class="form-container" id="bookForm">
             <h1>Book Info</h1>
 
-            <label for="title"><b>Title</b></label>
-            <input type="text" placeholder=" Book Name" name="title" required>
+            <label for="title" ><b>Title</b></label>
+            <input id="bookTitle" type="text" placeholder=" Book Name" name="title" required>
 
-            <label for="author"><b>Author</b></label>
-            <input type="text" placeholder="Author" name="author" required>
+            <label for="author" id="authorName"><b>Author</b></label>
+            <input id="authorName" type="text" placeholder="Author" name="author" required>
 
-            <label for="pages"><b>Pages</b></label>
-            <input type="number" placeholder="Pages" name="pages" required>
+            <label for="pages" ><b>Pages</b></label>
+            <input id="numberOfPages" type="number" placeholder="Pages" name="pages" required>
 
-            <input type="checkbox" id="readStatus" name="readStatus" value="false">
-            <label for="readStatus"><b>Read </b></label>
+            <input type="checkbox"  name="readStatus" value="false" >
+            <label id="readStatus" for="readStatus"><b>Read </b></label>
             
-            <button type="submit" class="btn">Archive</button>
+            <button type="submit" class="btn" id="archiveButton">Archive</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </form>
     </div>

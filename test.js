@@ -50,6 +50,8 @@ function bookDisplay(library) {
 
     bookDisplayArea.append(bookDiv);
   }
+  deleteBtn();
+  toggleRead()
 }
 
 addBookToLibrary("book1", "author1", 900, true);
@@ -90,7 +92,6 @@ function deleteBtn() {
   });
 }
 
-deleteBtn();
 
 function toggleRead() {
   const toggleBtn = document.querySelectorAll(".toggle-btn");
@@ -102,16 +103,36 @@ function toggleRead() {
       if (book) {
         book.readStatus = !book.readStatus;
 
-        if(book.readStatus){
-          btn.textContent="Read";
+        if (book.readStatus) {
+          btn.textContent = "Read";
         }
-        else{btn.textContent="Not Read"};
+        else { btn.textContent = "Not Read" };
 
         const paragraph = btn.parentElement.querySelector("p");
         paragraph.textContent = `Book: ${book.title}, by ${book.author}, has ${book.pages} pages. Been read ? ${book.readStatus}`;
       }
-      });
+    });
   });
 }
 
-toggleRead()
+
+
+//get the book data from the archive button           <button type="submit" class="btn" id="archiveButton">Archive</button>
+
+//take the content in the other fields, upon the click of archive, make a new object, using the addToLibrary function;
+function archiveNewBook() {
+  const archiveBook = document.querySelector("#archiveButton");
+  const bookTitle = document.querySelector("#bookTitle");
+  const authorName = document.querySelector("#authorName");
+  const numberOfPages = document.querySelector("#numberOfPages");
+  const readStatus = document.querySelector("#readStatus");
+  archiveBook.addEventListener("click", () => {
+    if (bookTitle.value) {
+      addBookToLibrary(bookTitle.value, authorName.value, Number(numberOfPages.value), readStatus.checked);
+    };
+    bookDisplay(myLibrary);
+  });
+}
+
+
+archiveNewBook();
