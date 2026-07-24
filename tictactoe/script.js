@@ -12,8 +12,7 @@ function Gamegrid() {
     const getGrid = () => grid;
 
     const dropToken = (row, column, player) => {
-        //check that the grip position isnt full and then drop the
-        //players mark where they so choose
+
         if ((grid[row][column].getValue() === "")) {
             grid[row][column].markCell(player);
         }
@@ -51,6 +50,7 @@ function GameController(
     playerTwoName = "Player Two"
 ) {
     const grid = Gamegrid();
+    let round = 0;
 
     const players = [
         {
@@ -79,7 +79,37 @@ function GameController(
         console.log(
             `Dropping ${getActivePlayer().name}'s token into cell ${row},${column}...`
         );
+        console.log(round++);//need to check that the round actually held... but ill do the rest for now
         grid.dropToken(row, column, getActivePlayer().token);
+
+        const winGame = () => {
+            let success = false;
+            //on the 5th round, start checking if the win condition has been fulfilled
+            if (round >= 5) {
+                // first check if there is a row that fulfills the conditions
+
+                for (let i = 0; i < 3; i++) {
+                    if (grid[i][0].getValue() === grid[i][1].getValue() && grid[i][1].getValue() === grid[i][2].getValue() && grid[i][0].getValue() !== "") {//check if there is a row with equal cells, that arent "" empty
+                        console.log(`${getActivePlayer().name} Wins this round`);
+                        return true;
+                    }
+                }
+
+                if ([0, 1, 2].some((col) => {
+                    return grid[0][col].getValue() === grid[1][col].getValue() &&
+                        grid[1][col].getValue() === grid[2][col].getValue() &&
+                        grid[0][col].getValue() !== "";
+                })) {
+                    return true;
+                }
+
+
+                //now for the diagonals
+                if ((grid[0][0].getValue() === grid[1][1].getValue() && grid[1][1].getValue() === grid[2][2].getValue()) || (grid[0][2].getValue() === grid[1][1].getValue() && grid[1][1].getValue() === grid[2][0].getValue()))
+                    return true;
+            }
+            return false;
+        };
 
         switchPlayerTurn();
         printNewRound();
@@ -90,8 +120,11 @@ function GameController(
         playRound,
         getActivePlayer,
     };
+
 }
 
 const game = GameController("Alice", "Bob");
 game.playRound(0, 0);
+game.playRound(1, 1);
+game.playRound(1, 1);
 game.playRound(1, 1);
