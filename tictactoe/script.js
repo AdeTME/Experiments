@@ -1,4 +1,4 @@
-function gameboard() {
+function Gamegrid() {
     const rows = 3;
     const columns = 3;
     const grid = [];
@@ -9,7 +9,7 @@ function gameboard() {
             grid[i].push(Cell());
         }
     }
-    const getBoard = () => grid;
+    const getGrid = () => grid;
 
     const dropToken = (row, column, player) => {
         //check that the grip position isnt full and then drop the
@@ -20,19 +20,17 @@ function gameboard() {
     };
 
     const printGrid = () => {
-        const boardWithCellValues = grid.map((row) =>
+        const gridWithCellValues = grid.map((row) =>
             row.map((cell) => cell.getValue())
         );
-        console.log(boardWithCellValues);
+        console.log(gridWithCellValues);
     };
 
 
-
-    return { getBoard, dropToken, printGrid }
+    return { getGrid, dropToken, printGrid }
 }
 
 function Cell() {
-
     let value = "";
 
     const markCell = (player) => {
@@ -47,8 +45,53 @@ function Cell() {
     };
 
 }
-const board = gameboard();
-board.dropToken(0, 0, "X");
-board.printGrid();
-board.dropToken(0, 0, "O"); // try overwriting the same cell
-board.printGrid(); // did it actually get blocked?
+
+function GameController(
+    playerOneName = "Player One",
+    playerTwoName = "Player Two"
+) {
+    const grid = Gamegrid();
+
+    const players = [
+        {
+            name: playerOneName,
+            token: "X",
+        },
+        {
+            name: playerTwoName,
+            token: "O",
+        },
+    ];
+
+    let activePlayer = players[0];
+
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
+    const getActivePlayer = () => activePlayer;
+
+    const printNewRound = () => {
+        grid.printGrid();
+        console.log(`${getActivePlayer().name}'s turn.`);
+    };
+
+    const playRound = (row, column) => {
+        console.log(
+            `Dropping ${getActivePlayer().name}'s token into cell ${row},${column}...`
+        );
+        grid.dropToken(row, column, getActivePlayer().token);
+
+        switchPlayerTurn();
+        printNewRound();
+    };
+
+    printNewRound();
+    return {
+        playRound,
+        getActivePlayer,
+    };
+}
+
+const game = GameController("Alice", "Bob");
+game.playRound(0, 0);
+game.playRound(1, 1);
